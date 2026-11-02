@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
+      - name: List project files
+        run: |
+            pwd
+            ls - la
+            find . -maxdepth 3 -type f
 
       - name: Copy app to EC2
         uses: appleboy/scp-action@v0.1.4
@@ -20,7 +25,7 @@ jobs:
           username: "ec2-user"
           port: 22
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./Dockerfile, ./*.py, ./requirements.txt, ./seeds, ./templates, ./static"
+          source: "./Dockerfile,./*.py,./requirements.txt,./seeds,./templates,./static"
           target: ~/book_store
 
       - name: Ensure Docker network exists
