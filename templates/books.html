@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Bunny's Bookstore</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <main>
+            <h1>Bunny's Books</h1>
+            <ul>
+                {% for book in books %}
+                <li> {{book.title}} by {{book.author}}</li>
+                {% endfor %}
+            </ul>
+            <form method="POST" action="/books">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title"><br>
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author"><br>
+                <input type="submit" value="Submit">
+            </form>
+        </main>
+    </body>
+</html>

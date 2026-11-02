@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Bunny's Bookstore</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <main>
+            <h1>Team</h1>
+            <p>Meet the warren!</p>
+            <ul>
+                {% for member in team %}
+                <li>
+                    {{member}}
+                </li>
+                {% endfor %}
+            </ul>
+        </main>
+    </body>
+</html>
