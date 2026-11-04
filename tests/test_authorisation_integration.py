@@ -62,4 +62,4 @@ def test_unauth_user_creates_book(page: Page):
     page.get_by_label("Title").fill("test1")
     page.get_by_label("Author").fill("test1")
     page.get_by_role("button", name="Submit").click()
-    assert page.url =="http://127.0.0.1:5001/books"
+    assert page.url =="http://127.0.0.1:5001/sessions/new"
