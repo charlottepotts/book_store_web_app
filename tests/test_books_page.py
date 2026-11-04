@@ -9,7 +9,7 @@ def test_has_title(page: Page):
 def test_has_list_of_books(page: Page):
     connection = DatabaseConnection()
     connection.connect()
-    connection.seed("seeds/book_store.sql")
+    connection.seed("seeds/books.sql")
     page.goto("http://127.0.0.1:5001/books")
     books = page.locator('li')
     expected_books = [
@@ -26,8 +26,13 @@ def test_has_list_of_books(page: Page):
 def test_creates_a_new_bok(page: Page):
     connection = DatabaseConnection()
     connection.connect()
-    connection.seed("seeds/book_store.sql")
-    page.goto("http://127.0.0.1:5001/books")
+    connection.execute("TRUNCATE TABLE users;")
+    connection.execute("INSERT INTO users (username, password, email) VALUES ('testuser', 'password123', 'email@email.com');")
+    page.goto("http://127.0.0.1:5001/sessions/new")
+    page.get_by_label("Username").fill("testuser")
+    page.get_by_label("Password").fill("password123")
+    page.get_by_role("button", name="Submit").click()
+    page.goto("http://127.0.0.1:5001/books") 
     # Grab and fill the first field, title
     page.get_by_label("Title").fill("Normal People")
     # Grab and fill the second field, author
